@@ -1,0 +1,7 @@
+Grammar Scoring Engine Result
+-----------------------------
+Transcribed Text:
+are you cry higher than dances
+
+Grammar Score: 94 / 100
+Total Issues: 1

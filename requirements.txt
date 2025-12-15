@@ -1,0 +1,5 @@
+
+streamlit
+SpeechRecognition
+language-tool-python
+pydub
