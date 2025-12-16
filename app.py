@@ -3,7 +3,6 @@ import speech_recognition as sr
 import language_tool_python
 from datetime import datetime
 
-# ---------------- UI ----------------
 st.title("Grammar Scoring Engine")
 st.caption("An AI-based system to evaluate spoken English grammar")
 
@@ -13,7 +12,6 @@ uploaded_file = st.file_uploader(
     help="Please upload a clear English voice recording"
 )
 
-# ---------------- SCORING ENGINE ----------------
 def grammar_score(matches):
     """
     Converts grammar issues into a numerical score (0–100).
@@ -27,7 +25,6 @@ def grammar_score(matches):
             score -= 3
     return max(0, score)
 
-# ---------------- MAIN LOGIC ----------------
 if uploaded_file:
     recognizer = sr.Recognizer()
 
@@ -41,7 +38,7 @@ if uploaded_file:
         st.subheader("Transcribed Text")
         st.write(text)
 
-        # ---------------- Grammar Analysis (Cloud-safe + Rate-limit safe) ----------------
+
         try:
             tool = language_tool_python.LanguageToolPublicAPI('en-US')
             issues = tool.check(text)
@@ -51,10 +48,10 @@ if uploaded_file:
             issues = []
             api_status = "unavailable"
 
-        # ---------------- Scoring ----------------
+    
         score = grammar_score(issues)
 
-        # ---------------- Output ----------------
+
         st.subheader("Grammar Score")
         st.success(f"{score} / 100")
 
@@ -82,7 +79,7 @@ if uploaded_file:
         else:
             st.write("No grammar issues detected.")
 
-        # ---------------- Save Result (Professional Report) ----------------
+    
         filename = f"grammar_result_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
         with open(filename, "w", encoding="utf-8") as f:
             f.write("Grammar Scoring Engine – Evaluation Report\n")
